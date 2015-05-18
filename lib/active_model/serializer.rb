@@ -188,6 +188,10 @@ module ActiveModel
       object.class.to_s.demodulize.underscore.pluralize
     end
 
+    def as_json(options = {})
+      ActiveModel::Serializer::Adapter.create(self, options).as_json(options)
+    end
+
     def attributes(options = {})
       attributes =
         if options[:fields]
